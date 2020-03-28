@@ -1,4 +1,4 @@
-// pages/home/home.js
+// miniprogram/pages/ItemBank/ItemBank.js
 const app = getApp()
 Page({
 
@@ -6,46 +6,42 @@ Page({
    * 页面的初始数据
    */
   data: {
-    swiperList: [],
-    list: [{
-      name: 'HTML5',
-      color: 'red',
-      title:"HTML5试题"
-    },
-    {
-      name: 'CSS3',
-      color: 'orange',
-      title:"CSS3试题"
-    },
-    {
-      name: 'JavaScript',
-      color: 'olive',
-      title: "JavaScript试题"
-      },
-      {
-        name: 'ES6',
-        color: 'yellow',
-        title: "ES6试题"
-      },
-    
-    {
-      name: 'Vue',
-      color: 'blue',
-      title: "Vue试题"
-    }
-    ],
+    listData:[],
+    activeIndex:0,
+    minIndex:-1
+
   },
-  BthClick(e) {
-    var that=this
-    let data = JSON.stringify(e.target.dataset.data)
-    wx.navigateTo({
-      url: '/pages/ItemBank/ItemBank?id=' + data,
+  minClick(e){
+
+    this.setData({
+      minIndex: e.target.dataset.index
     })
+    
+ 
+    if (this.data.activeIndex<this.data.listData.length){
+      this.setData({
+        activeIndex: Number(this.data.activeIndex)+1
+    })
+    }else{
+      wx.showToast({
+        title: '登录成功',
+        icon: 'success',
+        duration: 1000
+      })
+      this.setData({
+        activeIndex: this.data.listData.length
+      })
+    }
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
+    let data = JSON.parse(options.id)
+    wx.setNavigationBarTitle({
+      title: data.title
+    })
     var that = this
     //  调用login云函数获取openid
     wx.cloud.callFunction({
@@ -57,13 +53,13 @@ Page({
           env: 'weblibrary'
         })
         that.db = wx.cloud.database()
-        that.test = that.db.collection('ItemBank')
-        that.db.collection('ItemBank').get({
+        that.db.collection('htmlTopic').get({
           success: function (res) {
             // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
-            that.setData({
-              swiperList: res.data
-            })
+           console.log(res)
+           that.setData({
+             listData:res.data
+           })
           }
         })
       },
@@ -74,52 +70,53 @@ Page({
       }
     })
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
