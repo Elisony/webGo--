@@ -13,23 +13,23 @@ Page({
   },
   minClick(e){
 
-    this.setData({
-      minIndex: e.target.dataset.index
-    })
-    
+    // this.setData({
+    //   minIndex: e.target.dataset.index
+    // })
+    console.log(this.data.activeIndex ,this.data.listData.length)
  
-    if (this.data.activeIndex<this.data.listData.length){
+   
       this.setData({
         activeIndex: Number(this.data.activeIndex)+1
     })
-    }else{
+    if (this.data.activeIndex == this.data.listData.length-1) {
       wx.showToast({
         title: '登录成功',
         icon: 'success',
         duration: 1000
       })
       this.setData({
-        activeIndex: this.data.listData.length
+        activeIndex: this.data.listData.length-1
       })
     }
 
@@ -120,3 +120,8 @@ Page({
 
   }
 })
+// 1.点击选择题库传入当前选择的id跳转至答题页面
+// 2.进入答题页面获取到题库id，进行数组乱序然后查找数据库当前id下的库用乱序数组的下标去push
+// 3.渲染乱序的题目，记录当前在哪一题，默认为第一题
+// 4.点击选择题目判断是否正确并把选择的那一项保存到答题数组中以便于答题页面的统计分数，正确就自动跳转下一题并让记录的当前index值+1，如果index>题目数量则跳到答题结束页面显示分数，答题错误则停留该页面并把正确答案显示出来，手动点击下一题继续答题
+// 5.答题结束页面显示答题分数，通过循环题目数组来判断答题数组中哪几项符合正确答案从而得出分数，然后把错误的题目push到错题本保存到数据库，并把该分数push到该套试题下的排名数组中

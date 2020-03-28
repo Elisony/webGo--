@@ -1,4 +1,5 @@
 // pages/user/user.js
+const app = getApp()
 Page({
 
   /**
@@ -12,7 +13,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    //  调用login云函数获取openid
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        app.globalData.openid = res.result.openid
+        wx.cloud.init({
+          env: 'weblibrary'
+        })
+        that.db = wx.cloud.database()
+        that.db.collection('userInfo').get({
+          success: function (res) {
+            // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
+            console.log(res)
+           
+          }
+        })
+      },
+      fail: err => {
+        wx.navigateTo({
+          url: '../deployFunctions/deployFunctions',
+        })
+      }
+    })
   },
 
   /**
