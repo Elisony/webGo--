@@ -2,7 +2,6 @@
   "pages": [
     "pages/login/login",
     "pages/answer/answer",
-    "pages/ceshi/ceshi",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

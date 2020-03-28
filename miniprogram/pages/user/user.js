@@ -6,9 +6,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    ImageShow:false,
+    arrow:false
   },
-
+  // 打开微信支付
+  showQrcode(){
+    this.setData({
+      ImageShow:true
+    })
+  },
+  // 关闭支付
+  hideModal(){
+    this.setData({
+      ImageShow: false,
+      arrow:false
+    })
+  },
+  // 打开意见反馈
+  arrowShow(){
+    this.setData({
+      arrow: true
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -39,7 +58,18 @@ Page({
       }
     })
   },
-
+  // 复制GitHub
+  CopyLink(e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.link,
+      success: res => {
+        wx.showToast({
+          title: '已复制',
+          duration: 1000,
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -51,14 +81,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.showShareMenu({
+      withShareTicket: true
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.setData({
+      ImageShow: false,
+      arrow: false
+    })
   },
 
   /**

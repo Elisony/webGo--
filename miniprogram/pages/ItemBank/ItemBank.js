@@ -8,7 +8,8 @@ Page({
   data: {
     listData:[],
     activeIndex:0,
-    minIndex:-1
+    minIndex:-1,
+    isShow:true
 
   },
   minClick(e){

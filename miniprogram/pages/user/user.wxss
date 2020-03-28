@@ -13,6 +13,12 @@
   color: #fff;
   font-weight: 300;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  
+  
+}
+.bg-img{
+  height:500px;
+  background-size: cover;
 }
 .png{
   border-radius: 50%;
@@ -42,7 +48,11 @@
   mix-blend-mode: screen;  
   height: 100rpx;   
 }
-
+.arrowStyle{
+  font-size: 30rpx;
+  font-weight: bold;
+  color: red
+}
 map,.mapBox{
   left: 0;
   z-index: 99;
@@ -53,4 +63,9 @@ map,.mapBox{
 map,.mapBox{
   width: 750rpx;
   height: 300rpx;
+}
+.fontBai{
+  font-weight: bold;
+  font-size: 30rpx;
+  color: #333
 }
