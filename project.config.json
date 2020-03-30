@@ -62,6 +62,18 @@
 					"name": "pages/user/user",
 					"pathName": "pages/user/user",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/ranking/ranking",
+					"pathName": "pages/ranking/ranking",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/wrong/wrong",
+					"pathName": "pages/wrong/wrong",
+					"scene": null
 				}
 			]
 		}
