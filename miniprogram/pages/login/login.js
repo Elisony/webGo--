@@ -61,52 +61,55 @@ Page({
       url: '/pages/ceshi/ceshi',
     })
   },
-  getInfo() {
-    var that = this
-    wx.getUserInfo({
-      success: function(res) {
-        console.log(res)
-        var userInfo = res.userInfo
-     
-        // 查询
-        // this.db.collection('userInfo').get({
-        //   //如果查询成功的话
-        //   success(res) {
-        //     console.log(res)
-        //将获得的数据集加入到原来的数据集中
-        //调试一下，是否加入
-        //这里需要多多注意一下，数据加入后都是在下标1里面的
-        // 
-
-        //   },
-        // })
-           //  向test数据集添加记录
-        that.test.add({
-          // data 字段表示需新增的 JSON 数据
-          data: {
-            // userInfo: userInfo,
-            iv: res.iv,
-            url: userInfo.avatarUrl,
-            name: userInfo.nickName
-          },
-          //  数据插入成功，调用该函数
-          success: function(res) {
-            wx.switchTab({
-              url: '/pages/answer/answer',
-            })
-            wx.showToast({
-              title: '登录成功',
-              icon: 'success',
-              duration: 1000
-            })
-          }
-        })
-
+  getInfo(e) {
+    wx.login({
+      success(res) {
+        if (res.code) {
+          //发起网络请求
+          that.test.add({
+            // data 字段表示需新增的 JSON 数据
+            data: {
+              url: res.avatarUrl,
+              name: res.nickName,
+              code:res.code,
+            },
+            //  数据插入成功，调用该函数
+            success: function (res) {
+              wx.switchTab({
+                url: '/pages/answer/answer',
+              })
+              wx.showToast({
+                title: '登录成功',
+                icon: 'success',
+                duration: 1000
+              })
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
       }
     })
+    var that = this
+  
 
+    // 查询
+    // this.db.collection('userInfo').get({
+    //   //如果查询成功的话
+    //   success(res) {
+    //     console.log(res)
+    //将获得的数据集加入到原来的数据集中
+    //调试一下，是否加入
+    //这里需要多多注意一下，数据加入后都是在下标1里面的
+    // 
+
+    //   },
+    // })
+    //  向test数据集添加记录
+   
 
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
