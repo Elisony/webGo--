@@ -44,8 +44,11 @@ Page({
           wx.getUserInfo({
             success: function(res) {
               console.log(res.userInfo)
+              wx.setStorage({
+                key: 'name',
+                data: res.userInfo.nickName,
+              })
               that.getInfo()
-
             }
           })
         } else {
@@ -66,6 +69,7 @@ Page({
       success(res) {
         if (res.code) {
           //发起网络请求
+  
           that.test.add({
             // data 字段表示需新增的 JSON 数据
             data: {

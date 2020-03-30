@@ -11,7 +11,8 @@ Page({
     guanyuShow: false,
     scale: 1,
     windowHeight: 500,
-    url:""
+    url:"",
+    userName:""
   },
   // 打开微信支付
   showQrcode() {
@@ -43,7 +44,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    
     var that = this
+
     //  调用login云函数获取openid
     wx.cloud.callFunction({
       name: 'login',
@@ -92,48 +95,63 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    wx.showShareMenu({
-      withShareTicket: true
-    })
     var that = this
-    const ctx = wx.createCanvasContext('cv-pic')
-    var bgPath = '../../images/timg.jpg'
-    // var portraitPath = that.data.portrait_temp
-    var hostNickname = "语文诺"
-    var qrPath = '../../images/qcue.jpg'
-    var windowWidth = 500
-    that.setData({
-      scale: 1.6
+    wx.getStorage({
+      key: 'name',
+      success: function (res) {
+        if (res.data.length <= 2) {
+          that.setData({
+            userName: res.data
+          })
+        } else {
+          that.setData({
+            userName: res.data.slice(0, 2) + '...'
+          })
+        }
+        wx.showShareMenu({
+          withShareTicket: true
+        })
+        console.log(that.data.userName, "用户名")
+        const ctx = wx.createCanvasContext('cv-pic')
+        var bgPath = '../../images/timg.jpg'
+        // var portraitPath = that.data.portrait_temp
+        var hostNickname = that.data.userName
+
+        var qrPath = '../../images/qcue.jpg'
+        var windowWidth = 500
+        that.setData({
+          scale: 1.6
+        })
+        //绘制背景图片
+        ctx.drawImage(bgPath, 0, 0, windowWidth, that.data.scale * windowWidth)
+
+        //绘制头像
+        ctx.save()
+        ctx.beginPath()
+        // ctx.arc(windowWidth / 2, 0.32 * windowWidth, 0.15 * windowWidth, 0, 2 * Math.PI)
+        ctx.clip()
+        // ctx.drawImage(portraitPath, 0.7 * windowWidth / 2, 0.17 * windowWidth, 0.3 * windowWidth, 0.3 * windowWidth)
+        ctx.restore()
+        //绘制第一段文本
+        ctx.setFillStyle('red')
+        ctx.setFontSize(0.037 * windowWidth)
+        ctx.setTextAlign('center')
+        ctx.fillText(hostNickname + ' 正在挑战前端100', windowWidth / 2, 0.45 * windowWidth)
+        //绘制第二段文本
+        ctx.setFillStyle('#000')
+        ctx.setFontSize(0.037 * windowWidth)
+        ctx.setTextAlign('center')
+        ctx.fillText('邀请你一起来参加啦~', windowWidth / 2, 0.5 * windowWidth)
+        //绘制二维码
+        ctx.drawImage(qrPath, 0.5 * windowWidth / 2, 0.7 * windowWidth, 0.27 * windowWidth, 0.27* windowWidth)
+        //绘制第三段文本
+        ctx.setFillStyle('#333')
+        ctx.setFontSize(0.045 * windowWidth)
+        ctx.setTextAlign('center')
+        ctx.fillText('长按识别二维码', windowWidth / 2, 0.60 * windowWidth)
+        ctx.draw();
+      },
     })
-    //绘制背景图片
-    ctx.drawImage(bgPath, 0, 0, windowWidth, that.data.scale * windowWidth)
-
-    //绘制头像
-    ctx.save()
-    ctx.beginPath()
-    // ctx.arc(windowWidth / 2, 0.32 * windowWidth, 0.15 * windowWidth, 0, 2 * Math.PI)
-    ctx.clip()
-    // ctx.drawImage(portraitPath, 0.7 * windowWidth / 2, 0.17 * windowWidth, 0.3 * windowWidth, 0.3 * windowWidth)
-    ctx.restore()
-    //绘制第一段文本
-    ctx.setFillStyle('red')
-    ctx.setFontSize(0.037 * windowWidth)
-    ctx.setTextAlign('center')
-    ctx.fillText(hostNickname + ' 正在挑战前端100', windowWidth / 2, 0.45 * windowWidth)
-    //绘制第二段文本
-    ctx.setFillStyle('#000')
-    ctx.setFontSize(0.037 * windowWidth)
-    ctx.setTextAlign('center')
-    ctx.fillText('邀请你一起来参加啦~', windowWidth / 2, 0.5 * windowWidth)
-    //绘制二维码
-    ctx.drawImage(qrPath, 0.14 * windowWidth / 2, 0.7 * windowWidth, 0.26 * windowWidth, 0.26 * windowWidth)
-    //绘制第三段文本
-    ctx.setFillStyle('#000')
-    ctx.setFontSize(0.040 * windowWidth)
-    ctx.setTextAlign('center')
-    ctx.fillText('长按识别二维码', windowWidth / 2, 0.85 * windowWidth)
-    ctx.draw();
-
   },
   // 分享
   fenxiang() {
