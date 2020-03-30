@@ -9,14 +9,14 @@
     <view class="flex flex-sub flex-direction solid-right">
       <view class="text-xxl text-orange">{{visitTotal}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-attentionfill"></text>正确率</view>
+        <text class="cuIcon-attentionfill"></text>收藏</view>
     </view>
     <view class="flex flex-sub flex-direction solid-right">
       <view class="text-xxl text-blue">{{starCount}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-favorfill"></text>排名</view>
     </view>
-    <view class="flex flex-sub flex-direction">
+    <view class="flex flex-sub flex-direction" bindtap="fenxiang">
       <view class="text-xxl text-green">{{forksCount}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-fork"></text>分享</view>
@@ -69,11 +69,25 @@
       </view>
     </view>
     <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/test/list" hover-class="none">
+      <view class="content" hover-class="none" bindtap="guanyuClick">
         <text class="cuIcon-creativefill text-orange"></text>
         <text class="text-grey">关于我们</text>
-      </navigator>
+      </view>
+    </view>
+        <view class="cu-modal {{guanyuShow?'show':''}}">
+      <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+          <view class="content">关于我们</view>
+          <view class="action" bindtap="hideModal">
+            <text class="cuIcon-close text-red"></text>
+          </view>
+        </view>
+        <view class="padding-xl arrowStyle">
+          开发者们除了帅气和美丽，其他一无所有！
+        </view>
+      </view>
     </view>
   </view>
   <view class="cu-tabbar-height"></view>
 </scroll-view>
+<canvas class="cv-ct-canvas" canvas-id="cv-pic"  style="width:100%;height:{{windowHeight}}px;"></canvas>

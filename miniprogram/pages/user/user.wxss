@@ -69,3 +69,9 @@ map,.mapBox{
   font-size: 30rpx;
   color: #333
 }
+.cv-ct-canvas {
+  position: absolute;
+  left: 800rpx;
+  width: 300px;
+  height: 500px;
+}
