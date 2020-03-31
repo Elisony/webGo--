@@ -35,7 +35,7 @@
   width: 65%;
 }
 .fontClass{
-  font-size: 45rpx;
+  font-size: 40rpx;
   font-weight: bold
 }
 .favor{

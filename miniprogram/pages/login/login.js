@@ -44,10 +44,10 @@ Page({
           wx.getUserInfo({
             success: function(res) {
               console.log(res.userInfo)
-              wx.setStorage({
-                key: 'name',
-                data: res.userInfo.nickName,
-              })
+              // wx.setStorage({
+              //   key: 'userinfo',
+              //   data: res.userInfo,
+              // })
               that.getInfo()
             }
           })
@@ -65,36 +65,44 @@ Page({
     })
   },
   getInfo(e) {
+    var that = this
     wx.login({
       success(res) {
         if (res.code) {
-          //发起网络请求
-  
-          that.test.add({
-            // data 字段表示需新增的 JSON 数据
-            data: {
-              url: res.avatarUrl,
-              name: res.nickName,
-              code:res.code,
-            },
-            //  数据插入成功，调用该函数
-            success: function (res) {
-              wx.switchTab({
-                url: '/pages/answer/answer',
-              })
-              wx.showToast({
-                title: '登录成功',
-                icon: 'success',
-                duration: 1000
-              })
+          wx.getSetting({
+            success(res) {
+              if (res.authSetting['scope.userInfo']) {
+                // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+                wx.getUserInfo({
+                  success: function(res) {
+                    console.log(res.userInfo)
+                    // wx.setStorage({
+                    //   key: 'userinfo',
+                    //   data: res.userInfo,
+                    // })
+                    that.setData(res)
+                  }
+                })
+              } else {
+      
+                console.log('没有授权')
+      
+              }
             }
           })
+          // wx.getStorage({
+          //   key: 'userinfo',
+          //   success (res) {
+          //     console.log(res.data)
+          //   }
+          // })
+         
         } else {
           console.log('登录失败！' + res.errMsg)
         }
       }
     })
-    var that = this
+
   
 
     // 查询
@@ -113,6 +121,31 @@ Page({
    
 
   },
+setData(data){
+  var that = this
+ //发起网络请求
+ that.test.add({
+  // data 字段表示需新增的 JSON 数据
+  data: {
+    data:data.userInfo
+  },
+  //  数据插入成功，调用该函数
+  success: function (res) {
+    console.log(res)
+    if(res._id){
+      wx.switchTab({
+        url: '/pages/answer/answer',
+      })
+      wx.showToast({
+        title: '登录成功',
+        icon: 'success',
+        duration: 1000
+      })
+    }
+    
+  }
+})
+},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
