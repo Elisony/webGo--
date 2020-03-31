@@ -9,9 +9,9 @@
 <view class="Textpng">
 	<open-data type="userNickName" ></open-data>
 </view>
-<button wx:if="{{canIUse}}" open-type="getUserInfo" class="cu-btn round" bindgetuserinfo="getInfo" >授权登录</button>
+<button wx:if="{{canIUse}}" open-type="getUserInfo" class="cu-btn round" bindgetuserinfo="getInfo" >微信登录</button>
 <view wx:else>请升级微信版本</view>
 <view>
 </view>
-<image></image>
+<image src="../../images/sss.png" class="boxBottm"></image>
 </view>
