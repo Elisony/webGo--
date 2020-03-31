@@ -61,18 +61,27 @@
 					"id": -1,
 					"name": "pages/user/user",
 					"pathName": "pages/user/user",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "pages/ranking/ranking",
 					"pathName": "pages/ranking/ranking",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "pages/wrong/wrong",
 					"pathName": "pages/wrong/wrong",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
 					"scene": null
 				}
 			]

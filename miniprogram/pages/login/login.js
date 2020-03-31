@@ -13,7 +13,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this
     //  调用login云函数获取openid
     wx.cloud.callFunction({
@@ -42,7 +42,7 @@ Page({
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
-            success: function(res) {
+            success: function (res) {
               console.log(res.userInfo)
               // wx.setStorage({
               //   key: 'userinfo',
@@ -68,13 +68,14 @@ Page({
     var that = this
     wx.login({
       success(res) {
+        console.log(res)
         if (res.code) {
           wx.getSetting({
             success(res) {
               if (res.authSetting['scope.userInfo']) {
                 // 已经授权，可以直接调用 getUserInfo 获取头像昵称
                 wx.getUserInfo({
-                  success: function(res) {
+                  success: function (res) {
                     console.log(res.userInfo)
                     // wx.setStorage({
                     //   key: 'userinfo',
@@ -84,9 +85,9 @@ Page({
                   }
                 })
               } else {
-      
+
                 console.log('没有授权')
-      
+
               }
             }
           })
@@ -96,14 +97,14 @@ Page({
           //     console.log(res.data)
           //   }
           // })
-         
+
         } else {
           console.log('登录失败！' + res.errMsg)
         }
       }
     })
 
-  
+
 
     // 查询
     // this.db.collection('userInfo').get({
@@ -118,81 +119,87 @@ Page({
     //   },
     // })
     //  向test数据集添加记录
-   
+
 
   },
-setData(data){
-  var that = this
- //发起网络请求
- that.test.add({
-  // data 字段表示需新增的 JSON 数据
-  data: {
-    data:data.userInfo
+  setData(data) {
+    var that = this
+    //发起网络请求
+    that.test.add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        data: data.userInfo
+      },
+      //  数据插入成功，调用该函数
+      success: function (res) {
+
+        if (res._id) {
+          wx.switchTab({
+            url: '/pages/answer/answer',
+          })
+          // -----------------------别动我代码！！！------------------------------------
+          wx.setStorage({
+            key: 'name',
+            data: data.userInfo.nickName,
+          })
+           // -----------------------别动我代码！！！------------------------------------
+          wx.showToast({
+            title: '登录成功',
+            icon: 'success',
+            duration: 1000
+          })
+        }
+
+      }
+    })
   },
-  //  数据插入成功，调用该函数
-  success: function (res) {
-    console.log(res)
-    if(res._id){
-      wx.switchTab({
-        url: '/pages/answer/answer',
-      })
-      wx.showToast({
-        title: '登录成功',
-        icon: 'success',
-        duration: 1000
-      })
-    }
-    
-  }
-})
-},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

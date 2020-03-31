@@ -111,7 +111,6 @@ Page({
         wx.showShareMenu({
           withShareTicket: true
         })
-        console.log(that.data.userName, "用户名")
         const ctx = wx.createCanvasContext('cv-pic')
         var bgPath = '../../images/timg.jpg'
         // var portraitPath = that.data.portrait_temp
@@ -141,7 +140,7 @@ Page({
         ctx.setFillStyle('#000')
         ctx.setFontSize(0.037 * windowWidth)
         ctx.setTextAlign('center')
-        ctx.fillText('邀请你一起来参加啦~', windowWidth / 2, 0.5 * windowWidth)
+        ctx.fillText('快来一起涨知识啦~', windowWidth / 2, 0.5 * windowWidth)
         //绘制二维码
         ctx.drawImage(qrPath, 0.5 * windowWidth / 2, 0.7 * windowWidth, 0.27 * windowWidth, 0.27* windowWidth)
         //绘制第三段文本
