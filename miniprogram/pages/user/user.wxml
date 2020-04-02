@@ -1,8 +1,12 @@
 <!--pages/user/user.wxml-->
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg">
-    <open-data type="userAvatarUrl" class="png"></open-data>
-    <open-data type="userNickName" class="Textpng"></open-data>
+  <view >
+  </view>
+    <!-- <open-data type="userAvatarUrl" class="png"></open-data> -->
+    <!-- <open-data type="userNickName" class="Textpng"></open-data> -->
+   <image src="../../images/logo.jpg"  class="" style="border-radius:50%"></image>
+    <button bindtap="userinfo"   style="color:#fff;background:">登录答题</button>
     <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
   <view class="padding flex text-center text-grey bg-white shadow-warp">
