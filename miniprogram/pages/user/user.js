@@ -198,7 +198,6 @@ Page({
   // 分享
   fenxiang() {
     var that = this
-    
     if(!that.data.isShow){
       console.log(1)
       that.userinfo()
