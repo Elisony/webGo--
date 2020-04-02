@@ -17,5 +17,54 @@ App({
     }
 
     this.globalData = {}
+
+
+
+    // // 获取登录授权
+    //  // 查看是否授权
+    //  wx.getSetting({
+    //   success(res) {
+    //     if (res.authSetting['scope.userInfo']) {
+    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+    //       wx.getUserInfo({
+    //         success: function (res) {
+    //           console.log(res.userInfo)
+    //           var that = this
+    //           wx.login({
+    //             success(res) {
+    //               console.log(res)
+    //               if (res.code) {
+    //                 wx.getSetting({
+    //                   success(res) {
+    //                     if (res.authSetting['scope.userInfo']) {
+    //                       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+    //                       wx.getUserInfo({
+    //                         success: function (res) {
+                            
+    //                           that.setData(res)
+    //                         }
+    //                       })
+    //                     } else {
+    //                       console.log('没有授权')
+    //                     }
+    //                   }
+    //                 })
+    //               } else {
+    //                 console.log('登录失败！' + res.errMsg)
+    //               }
+    //             }
+    //           })
+    //         }
+    //       })
+    //     } else {
+    //       wx.navigateTo({
+    //         url: '/pages/login/login',
+    //       })
+    //       console.log('没有授权')
+
+    //     }
+    //   }
+    // })
+
   }
 })

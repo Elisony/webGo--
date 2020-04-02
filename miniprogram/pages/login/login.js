@@ -36,35 +36,37 @@ Page({
       }
     })
     // 
-    // 查看是否授权
-    wx.getSetting({
-      success(res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-              console.log(res.userInfo)
-              // wx.setStorage({
-              //   key: 'userinfo',
-              //   data: res.userInfo,
-              // })
-              that.getInfo()
-            }
-          })
-        } else {
-
-          console.log('没有授权')
-
-        }
-      }
-    })
+   
   },
   BthClick() {
     wx.navigateTo({
       url: '/pages/ceshi/ceshi',
     })
   },
+
+  
+  // 
+  // 用户信息授权
   getInfo(e) {
+    var that = this
+    console.log(e)
+  
+    if (e.detail.userInfo) {
+      this.get_publickey()
+    } else {
+      // console.log('用户点击拒绝')
+      wx.showToast({
+        title: '允许授权后才可使用',
+        icon: 'none',
+        duration: 2000
+      })
+      // that.setData({
+      //   checkeds: false,
+      // })
+    }
+  },
+  // 
+  get_publickey(e) {
     var that = this
     wx.login({
       success(res) {
