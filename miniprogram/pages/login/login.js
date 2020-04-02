@@ -83,6 +83,10 @@ Page({
                     //   key: 'userinfo',
                     //   data: res.userInfo,
                     // })
+                    wx.setStorage({
+                      key: 'info',
+                      data: res.userInfo,
+                    })
                     that.setData(res)
                   }
                 })
@@ -137,7 +141,7 @@ Page({
 
         if (res._id) {
           wx.switchTab({
-            url: '/pages/answer/answer',
+            url: '/pages/user/user',
           })
           // -----------------------别动我代码！！！------------------------------------
           wx.setStorage({

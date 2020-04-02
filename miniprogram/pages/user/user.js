@@ -13,7 +13,9 @@ Page({
     scale: 1,
     windowHeight: 500,
     url:"",
-    userName:""
+    userName:"",
+    isShow:true,
+    info:{}
   },
   // 打开微信支付
   showQrcode() {
@@ -45,9 +47,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+   
     var that = this
-
     //  调用login云函数获取openid
     wx.cloud.callFunction({
       name: 'login',
@@ -72,6 +73,7 @@ Page({
         })
       }
     })
+
   },
   // 复制GitHub
   CopyLink(e) {
@@ -95,8 +97,6 @@ Page({
             wx.navigateTo({
               url: '/pages/login/login',
             })
-
-   
       }else{
         wx.navigateTo({
           url: '/pages/login/login',
@@ -116,6 +116,23 @@ Page({
    */
   onShow: function() {
     var that = this
+    wx.getStorage({
+      key: 'info',
+      success:function(res){
+        that.setData({
+          info:res.data
+        })
+        that.setData({
+          isShow:true
+        })
+        console.log(res,"成功")
+      },fail:function(err){
+        that.setData({
+          isShow:false
+        })
+        console.log(err,"没有用户民")
+      }
+    })
     wx.getStorage({
       key: 'name',
       success: function (res) {
@@ -170,11 +187,22 @@ Page({
         ctx.fillText('长按识别二维码', windowWidth / 2, 0.60 * windowWidth)
         ctx.draw();
       },
+      fail: err => {
+      that.setData({
+        isShow:false
+      })
+       console.log(err)
+      }
     })
   },
   // 分享
   fenxiang() {
     var that = this
+    
+    if(!that.data.isShow){
+      console.log(1)
+      that.userinfo()
+    }else{
     wx.canvasToTempFilePath({
       x: 0,
       y: 0,
@@ -215,7 +243,7 @@ Page({
         console.log(err)
       }
     })
-
+  }
   },
   saveImg(){
     wx.saveImageToPhotosAlbum({
