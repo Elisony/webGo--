@@ -1,5 +1,28 @@
-<view class="box">
-
-<view class="title">{{activeIndex+1}}.{{listData[activeIndex].title}}</view>
-<view  wx:for="{{listData[activeIndex].option}}" wx:key="index" class="min " hover-class="isShow" bindtap="minClick" data-index="{{index}}">{{item}}</view>
+<view wx:if="{{isShowBank}}" style="height:100vh">
+	<view class="titleTop">*请务必遵守考场纪律</view>
+	<view class="topText">随机抽取题库20题，每周不定时更新</view>
+	<view class="userAvata">
+		<open-data type="userAvatarUrl" class="userinfo-avatar"></open-data>
+		<open-data type="userNickName" class="Textpng"></open-data>
+	</view>
+	<view class="startBank">在答题开始之后，您不能有如下操作：</view>
+	<view class="listBox">上网查阅资料</view>
+	<view class="listBox">与人交头接耳</view>
+	<view class="listBox">相互传递答案</view>
+	<view class="bthStart" bindtap="StartBth">开始答题</view>
+</view>
+<view class="box" wx:else>
+	<view class="titleBox">
+		<view class="titleLeft">
+			<open-data type="userAvatarUrl" class="userinfoMin"></open-data>
+			<open-data type="userNickName" class="TextpngMin"></open-data>
+		</view>
+		<view class="Question">第{{activeIndex+1}}题</view>
+	</view>
+	<view class="cu-progress round sm striped active">
+		<view class="bg-green" style="width:{{widthLoad}}"></view>
+	</view>
+	<view class="QuestionNumber">{{activeIndex+1}}/20</view>
+	<view class="title">{{listData[activeIndex].title}}</view>
+	<view wx:for="{{listData[activeIndex].option}}" wx:key="index" class="min " hover-class="isShow" bindtap="minClick" data-index="{{index}}">{{item}}</view>
 </view>

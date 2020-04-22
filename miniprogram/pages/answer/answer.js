@@ -38,8 +38,20 @@ Page({
   BthClick(e) {
     var that=this
     let data = JSON.stringify(e.target.dataset.data)
-    wx.navigateTo({
-      url: '/pages/ItemBank/ItemBank?id=' + data,
+    wx.getStorage({
+      key: 'info',
+      success:function(res){
+        that.setData({
+          info:res.data
+        })
+        wx.navigateTo({
+          url: '/pages/ItemBank/ItemBank?id=' + data,
+        })
+      },fail:function(err){
+        wx.navigateTo({
+          url: '/pages/login/login',
+        })
+      }
     })
   },
   /**

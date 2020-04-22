@@ -81,7 +81,7 @@ Page({
       data: e.currentTarget.dataset.link,
       success: res => {
         wx.showToast({
-          title: '已复制',
+          title: '已复制GitHub地址',
           duration: 1000,
         })
       }

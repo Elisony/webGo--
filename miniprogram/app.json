@@ -1,6 +1,5 @@
 {
   "pages": [
-   
     "pages/answer/answer",
     "pages/login/login",
     "pages/index/index",
@@ -19,7 +18,8 @@
     "pages/wrong/wrong",
     "pages/ranking/ranking",
     "pages/user/user",
-    "pages/ItemBank/ItemBank"
+    "pages/ItemBank/ItemBank",
+    "pages/answerEnd/answerEnd"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

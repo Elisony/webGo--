@@ -1,7 +1,6 @@
 // miniprogram/pages/ItemBank/ItemBank.js
 const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -9,31 +8,38 @@ Page({
     listData:[],
     activeIndex:0,
     minIndex:-1,
-    isShow:true
+    isShow:true,
+    isShowBank:true,
+    widthLoad:"5%",
+    indexQuestion:1,
+    answer:[]
 
   },
-  minClick(e){
-
-    // this.setData({
-    //   minIndex: e.target.dataset.index
-    // })
-    console.log(this.data.activeIndex ,this.data.listData.length)
- 
-   
-      this.setData({
-        activeIndex: Number(this.data.activeIndex)+1
+  // 点击开始答题
+  StartBth(){
+    this.setData({
+      isShowBank:false
     })
-    if (this.data.activeIndex == this.data.listData.length-1) {
-      wx.showToast({
-        title: '登录成功',
-        icon: 'success',
-        duration: 1000
+  },
+  minClick(e){
+    let that=this
+    setTimeout(function(){
+      that.setData({
+        activeIndex: Number(that.data.activeIndex)+1,
+        widthLoad:(Number(that.data.activeIndex)+2)*5+'%'
+    })
+    that.data.answer.push(e.currentTarget.dataset.index)
+    if (that.data.activeIndex == that.data.listData.length) {
+      wx.navigateTo({
+        url: '/pages/answerEnd/answerEnd?listAnwer='+ that.data.answer,
       })
-      this.setData({
-        activeIndex: this.data.listData.length-1
+      that.setData({
+        activeIndex: that.data.listData.length-1
       })
     }
+     }, 500);
 
+ 
   },
   /**
    * 生命周期函数--监听页面加载
@@ -44,6 +50,7 @@ Page({
       title: data.title
     })
     var that = this
+    
     //  调用login云函数获取openid
     wx.cloud.callFunction({
       name: 'login',
@@ -70,6 +77,11 @@ Page({
         })
       }
     })
+    setTimeout(function() {
+      that.setData({
+        loading: true
+      })
+    }, 500)
   },
 
   /**

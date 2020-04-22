@@ -9,6 +9,6 @@
   请选择测试的题库类型
 </view>
 <view class="bthC">
-  <button wx:for="{{list}}" wx:key="index" class="cu-btn round bg-{{item.color}} shadow" bindtap="BthClick" data-data="{{item}}">{{item.name}}</button>
+  <button  wx:for="{{list}}" wx:key="index" disabled="{{index!=0}}" class="cu-btn round bg-{{item.color}} shadow" bindtap="BthClick" data-data="{{item}}">{{item.name}}</button>
   </view>
   </view>
