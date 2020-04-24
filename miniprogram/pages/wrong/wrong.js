@@ -49,7 +49,13 @@ Page({
   onPullDownRefresh: function () {
 
   },
-
+  textClick(){
+    wx.showToast({
+      title: '暂未开放',
+      icon: 'loading',
+      duration: 1000,
+    })
+  },
   /**
    * 页面上拉触底事件的处理函数
    */

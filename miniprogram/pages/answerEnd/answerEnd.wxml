@@ -7,5 +7,5 @@
   <view class="fenshu">恭喜获得</view>
   <view class="numberFen">{{answerNumber}}</view>
   <view class="bottomText">*分数将自动计入排名，排名根据累计分数排序</view>
-  <button bindtap="cabk">返回首页</button>
+  <button bindtap="goToMypage">返回首页</button>
 </view>

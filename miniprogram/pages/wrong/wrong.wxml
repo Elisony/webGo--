@@ -1,6 +1,6 @@
 <view class="cu-card case {{isCard?'no-card':''}}">
   <view class="cu-item shadow">
-    <view class="image">
+    <view class="image" bindtap="textClick">
       <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585582502456&di=56131d99d5637b4cd46b58223897b1d1&imgtype=0&src=http%3A%2F%2Fimages.669pic.com%2Felement_pic%2F18%2F25%2F50%2F28%2F80e1b59b93c099ab80d995cbae5e2965.jpg%2521w700wb" mode="widthFix"></image>
       <view class="cu-tag bg-red">推荐</view>
       <view class="cu-bar bg-shadeBottom">
@@ -27,7 +27,7 @@
 </view>
 <view class="cu-card case {{isCard?'no-card':''}}">
   <view class="cu-item shadow">
-    <view class="image">
+    <view class="image" bindtap="textClick">
       <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585582578108&di=d3ec3b7587983da7135012491ca42b56&imgtype=0&src=http%3A%2F%2Fpx.thea.cn%2FPublic%2FUpload%2FUploadfiles%2Fimage%2F20170811%2F20170811134227_22966.png" mode="widthFix"></image>
       <view class="cu-tag bg-red">推荐</view>
       <view class="cu-bar bg-shadeBottom">
@@ -54,7 +54,7 @@
 </view>
 <view class="cu-card case {{isCard?'no-card':''}}">
   <view class="cu-item shadow">
-    <view class="image">
+    <view class="image" bindtap="textClick">
       <image src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=552400726,609311019&fm=11&gp=0.jpg" mode="widthFix"></image>
       <view class="cu-tag bg-red">推荐</view>
       <view class="cu-bar bg-shadeBottom">

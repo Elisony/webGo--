@@ -46,6 +46,7 @@ Page({
    */
   onLoad: function (options) {
     let data = JSON.parse(options.id)
+    console.log(options)
     wx.setNavigationBarTitle({
       title: data.title
     })

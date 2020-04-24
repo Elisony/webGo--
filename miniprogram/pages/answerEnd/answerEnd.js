@@ -49,8 +49,9 @@ Page({
       }
     })
   },
-  cabk(){
-    wx.navigateTo({
+  goToMypage(){
+    console.log("hhh")
+    wx.switchTab({
       url: '/pages/answer/answer',
     })
   },
