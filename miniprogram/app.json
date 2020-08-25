@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/answer/answer",
     "pages/login/login",
+    "pages/answer/answer",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -34,28 +34,28 @@
     "borderStyle": "white",
     "list": [
       {
-        "selectedIconPath": "images/tabar/index1.png",
+        "selectedIconPath": "images/tabar/index.png",
         "iconPath": "images/tabar/index.png",
         "pagePath": "pages/answer/answer",
-        "text": "题库"
+        "text": "七月的朋友"
       },
       {
-        "selectedIconPath": "images/tabar/index2.png",
+        "selectedIconPath": "images/tabar/index22.png",
         "iconPath": "images/tabar/index22.png",
         "pagePath": "pages/wrong/wrong",
-        "text": "面经"
+        "text": "七月的故事"
       },
       {
-        "selectedIconPath": "images/tabar/index33.png",
+        "selectedIconPath": "images/tabar/index3.png",
         "iconPath": "images/tabar/index3.png",
         "pagePath": "pages/ranking/ranking",
-        "text": "排名"
+        "text": "七月的生活"
       },
       {
-        "selectedIconPath": "images/tabar/index44.png",
+        "selectedIconPath": "images/tabar/index4.png",
         "iconPath": "images/tabar/index4.png",
         "pagePath": "pages/user/user",
-        "text": "个人中心"
+        "text": "我是七月"
       }
     ]
   },

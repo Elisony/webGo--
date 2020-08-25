@@ -7,85 +7,83 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [{
-        name: "旺旺",
-        Fraca: "113",
-        classfi: "0",
-        url: "http://owemuck.kuai369.com/img/qcsmimg/%5Bqicai%5D1~78.jpg"
-      },
-      {
-        name: "旺旺1",
-        Fraca: "113",
-        classfi: "0",
-        url: "http://owemuck.kuai369.com/img/qcsmimg/%5Bqicai%5D1~78.jpg"
-      }, {
-        name: "旺旺2",
-        Fraca: "113",
-        classfi: "0",
-        url: "http://owemuck.kuai369.com/img/qcsmimg/%5Bqicai%5D1~78.jpg"
-      }, {
-        name: "旺旺3",
-        Fraca: "113",
-        classfi: "0",
-        url: "http://owemuck.kuai369.com/img/qcsmimg/%5Bqicai%5D1~78.jpg"
-      }, {
-        name: "旺旺4",
-        Fraca: "113",
-        classfi: "0",
-        url: "http://owemuck.kuai369.com/img/qcsmimg/%5Bqicai%5D1~78.jpg"
-      }, {
-        name: "旺旺5",
-        Fraca: "113",
-        classfi: "0",
-        url: "http://owemuck.kuai369.com/img/qcsmimg/%5Bqicai%5D1~78.jpg"
-      }, {
-        name: "旺旺6",
-        Fraca: "113",
-        classfi: "0",
-        url: "http://owemuck.kuai369.com/img/qcsmimg/%5Bqicai%5D1~78.jpg"
-      }, {
-        name: "旺旺7",
-        Fraca: "113",
-        classfi: "0",
-        url: "http://owemuck.kuai369.com/img/qcsmimg/%5Bqicai%5D1~78.jpg"
-      }, {
-        name: "旺旺",
-        Fraca: "113",
-        classfi: "0",
-        url: "http://owemuck.kuai369.com/img/qcsmimg/%5Bqicai%5D1~78.jpg"
-      }, {
-        name: "旺旺",
-        Fraca: "113",
-        classfi: "0",
-        url: "http://owemuck.kuai369.com/img/qcsmimg/%5Bqicai%5D1~78.jpg"
-      }
-    ]
+    imgUrlList: [],
+    modalName:false,
+    password:'',
+    loadModal:true,
+    passwordNow:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  showModal(){
+    this.setData({
+      modalName:true
+    })
+  },
+  bindKeyInput(e){
+    this.setData({
+      passwordNow:e.detail.value
+    })
+    console.log(e.detail.value)
+  },
+  hideModal(){
+    if(this.data.passwordNow=='131400'){
+      this.upload()
+      this.setData({
+        modalName:false,
+        passwordNow:""
+      })
+    }else{
+      wx.showToast({
+        title: '你不是我的主人哦，无权操作',
+        'icon': 'none',
+        duration: 3000
+      })
+      this.setData({
+        modalName:false,
+        passwordNow:""
+      })
+    }
+  },
+  hideModalChal(){
+    this.setData({
+      modalName:false
+    })
+  },
+  // 预览图片
+  previewImage(e){
+    let arryList=[]
+    this.data.imgUrlList.forEach(item=>{
+      arryList.push(item.bigImg)
+    })
+    wx.previewImage({
+      current:e.target.dataset.data, // 当前显示图片的http链接
+      urls:arryList // 需要预览的图片http链接列表
+    })
+    console.log(this.data.imgUrlList)
+  },
   onLoad: function (options) {
+    console.log(this.data.modalName)
     var that = this
     //  调用login云函数获取openid
     wx.cloud.callFunction({
       name: 'login',
       data: {},
       success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
         app.globalData.openid = res.result.openid
         wx.cloud.init({
           env: 'weblibrary'
         })
         that.db = wx.cloud.database()
-        that.test = that.db.collection('ranking')
-        // 获取排名
+        that.test = that.db.collection('daily')
         that.test.get({
           success: function (res) {
-            // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
-           that.setData({
-             list:res.data[0].list
-           })
+            that.setData({
+              imgUrlList:  res.data,
+              loadModal:false
+            })
           }
         })
       },
@@ -97,7 +95,102 @@ Page({
       }
     })
   },
-
+  upload() {
+    let that=this
+    // 选择图片
+    wx.chooseImage({
+      count: 1, //图片数量
+      sizeType: ['compressed'], //压缩图
+      sourceType: ['album', 'camera'], //拍照  or  相册
+      success: (res) => {
+        wx.showLoading({
+          title: '上传中',
+        })
+        const filePath = res.tempFilePaths[0] //324324.png
+        // 上传图片
+        const cloudPath = 'daily' + Date.now() + filePath.match(/\.[^.]+?$/)[0]
+        wx.cloud.uploadFile({ //上传图片到云存储
+          cloudPath, //云存储路径
+          filePath, //本地图片路径
+          success: res => {
+            let fileID = res.fileID;
+            //将成功上传的图片存入artcles数据库中
+            const db = wx.cloud.database();
+            db.collection("daily").add({
+              data: {
+                bigImg: fileID
+              },
+              success: function () {
+                //添加成功后更新imgurls，即能够在页面中显示新添加的图片
+                var zhou_time = that.data.imgUrlList;
+                zhou_time.push(fileID)
+                that.setData({
+                      imgUrlList: zhou_time
+                    })
+                wx.showToast({
+                  title: '图片上传成功',
+                  'icon': 'none',
+                  duration: 3000
+                })
+              },
+              fail: function () {
+                wx.showToast({
+                  title: '图片存储失败',
+                  'icon': 'none',
+                  duration: 3000
+                })
+              }
+            });
+          },
+          fail: e => {
+            wx.showToast({
+              icon: 'none',
+              title: '上传失败',
+            })
+          },
+          complete: () => {
+            wx.hideLoading()
+          }
+        })
+      },
+      fail: e => {
+        console.error(e)
+      }
+    })
+  },
+  deleteImage: function (e) {
+    var that = this;
+    var images = that.data.imgUrlList;
+    var index = e.currentTarget.dataset.data;//获取当前长按图片下标
+    wx.showModal({
+     title: '提示',
+     content: '主人忍心删除这么可爱的猫咪吗？',
+     success: function (res) {
+       if (res.confirm) {
+       images.splice(images.indexOf(index),1)
+       const db = wx.cloud.database();
+       db.collection('daily').doc(index._id).remove({
+        success: function (res) {
+          wx.showToast({
+            title: '图片删除成功',
+            'icon': 'none',
+            duration: 3000
+          })
+        },
+        fail:err=>{
+          console.log(err)
+        }
+      })
+      } else if (res.cancel) {
+        console.log('点击取消了');
+        return false;    
+       }
+      that.setData({
+        imgUrlList:images
+      });
+     }
+    })
+   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

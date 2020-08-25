@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarTitleText": "会说话的七月",
+  "navigationBarBackgroundColor": "#ffc0cb",
+  "navigationBarTextStyle": "white"
 }

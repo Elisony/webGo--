@@ -1,20 +1,49 @@
 // pages/wrong/wrong.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list:[],
+    loadModal:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    //  调用login云函数获取openid
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        app.globalData.openid = res.result.openid
+        wx.cloud.init({
+          env: 'weblibrary'
+        })
+        that.db = wx.cloud.database()
+        that.test = that.db.collection('wrong')
+        that.test.get({
+          success: function (res) {
+            that.setData({
+              list:res.data,
+              loadModal:false
+            })
+          }
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+        wx.navigateTo({
+          url: '../deployFunctions/deployFunctions',
+        })
+      }
+    })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

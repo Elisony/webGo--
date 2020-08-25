@@ -1,18 +1,35 @@
-<!--pages/ranking/ranking.wxml-->
-<scroll-view scroll-x class="bg-green nav text-center">
-  <view class="cu-item {{1==TabCur?'text-white cur':''}}" data-id="1">
-    <text class="cuIcon-upstagefill"></text> 排行榜
-  </view>
-</scroll-view>
-<view wx:for="{{list}}" wx:key="index" class="box">
-  <text class="{{index==0?'cuIcon-upstagefill':index==1?'cuIcon-medalfill':index==2?'cuIcon-medal':''}} {{index==0?'titleOne':index==1?'titleThree':index==2?'titleTow':''}}"></text>
-  <text wx:if="{{index!=1&&index!=0&&index!=2}}" class="paiming">{{index+1}}</text>
-  <image src="{{item.url}}" class="imgh"></image>
-  <view class="fontBox">
-  <view class="topFont">
-    <text class="fontClass">{{item.name}}</text>
-    <text class="favor"><text class="cuIcon-favorfill "></text>{{item.Fraca}}</text>
-    </view>
-    <view class="bottomFont">HTML5</view>
-  </view>
+<view class='cu-load load-modal'  wx:if="{{loadModal}}">
+  <!-- <view class='cuIcon-emojifill text-orange'></view> -->
+  <image src='../../images/tabar/index3.png' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>加载中...</view>
 </view>
+<view wx:else>
+<view class="topTitle">
+	<p>Hello!大家好</p>
+  <!--  bindtap="upload" -->
+	<p bindtap="showModal">欢迎来到七月的卖萌空间</p>
+</view>
+<view class="bigBox">
+	<view class="imgBox" wx:for="{{imgUrlList}}" wx:key="index">
+		<image bindtap="previewImage" bindlongpress="deleteImage" data-data="{{item}}" class="cuItemImg" src="{{item.bigImg}}"></image>
+	</view>
+</view>
+<view class="cu-modal {{modalName?'show':''}}" wx:if="modalName">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">七月私密空间</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <input class="weui-input" type="number" value="{{passwordNow}}"  placeholder="七月密"  bindinput="bindKeyInput" placeholder-style="color:#F76260" password />
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action" style="margin:0">
+        <button class="cu-btn line-green text-green" bindtap="hideModalChal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="hideModal">确定</button>
+      </view>
+    </view>
+  </view>
+</view></view>

@@ -1,6 +1,6 @@
 /* pages/user/user.wxss */
 .UCenter-bg {
-  background-image: url(https://image.weilanwl.com/color2.0/index.jpg);
+  background-image: url(https://appletsimg.oss-cn-beijing.aliyuncs.com/beijing.jpg);
   background-size: cover;
   height: 500rpx;
   display: flex;
@@ -13,8 +13,6 @@
   color: #fff;
   font-weight: 300;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-  
-  
 }
 .bg-img{
   height:500px;
@@ -26,9 +24,11 @@
   overflow:hidden
 }
 .Textpng{
-  font-size: 30rpx;
+  font-size: 50rpx;
   font-weight: bold;
-  line-height: 90rpx
+  line-height: 90rpx;
+  color:pink;
+  font-style: italic;
 }
 .UCenter-bg text {
   opacity: 0.8;
@@ -74,4 +74,31 @@ map,.mapBox{
   left: 800rpx;
   width: 300px;
   height: 500px;
+}
+.timeBox{
+  width: 80%;
+  height: 150rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin:0 auto;
+  margin-top: 50rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.topText{
+  font-size: 30rpx;
+  text-align: center;
+  font-style: italic;
+  line-height: 60rpx;
+  font-weight: bold;
+  color: #666;
+}
+.bottomText{
+  font-size: 50rpx;
+  text-align: center;
+  color: pink;
+  font-weight: bold;
+  letter-spacing: 8rpx;
 }

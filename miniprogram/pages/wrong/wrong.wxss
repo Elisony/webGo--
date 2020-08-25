@@ -1,1 +1,14 @@
 /* pages/wrong/wrong.wxss */
+.addDaily{
+  font-size: 80rpx;
+  text-align: center;
+  margin: 20rpx 0;
+  color: rgb(154, 230, 32);
+  display: block;
+}
+.bottomText{
+  text-align: center;
+  color: pink;
+  font-style: italic;
+  display: block;
+}

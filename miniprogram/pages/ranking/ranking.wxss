@@ -1,73 +1,29 @@
-.titleOne {
-  font-size: 60rpx;
-  color: #D9D919
-}
-
-.titleTow {
-  font-size: 60rpx;
-  color: #B87333
-}
-
-.titleThree {
-  font-size: 60rpx;
-  color: silver
-}
-
-.box {
-  display: flex;
-  height: 200rpx;
-  align-items: center;
-  border-top: 2rpx dashed LightBLue
-}
-
-.paiming {
-  width: 60rpx;
-  text-align: center;
+.topTitle{
   font-size: 40rpx;
-  font-weight: bold
-}
-
-.imgh {
-  width: 130rpx;
-  height: 130rpx;
-  border-radius: 50%;
-  margin-left: 40rpx
-}
-
-.fontBox {
-  height: 100%;
-  box-sizing: border-box;
-  padding: 30rpx 30rpx;
-  width: 65%;
-}
-
-.fontClass {
-  font-size: 35rpx;
   font-weight: bold;
-  color: red;
-  width: 170rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.favor {
-  font-size: 35rpx;
-  color: GreenYellow;
-  text-align: right
-}
-
-.topFont {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-}
-
-.bottomFont {
-  text-align: right;
-  font-size: 30rpx;
   color: #333;
-  margin-top: 50rpx;
-  font-weight: bold
+  font-family: FangSong;
+  text-align: center;
+  margin: 40rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.bigBox{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.imgBox{
+  width:200rpx;
+  height:200rpx;
+  border-radius: 50%;
+  margin-top: 20px;
+}
+.cuItemImg{
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
 }

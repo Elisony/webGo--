@@ -1,41 +1,100 @@
-/* pages/home/home.wxss */
-.box{
-  height: 100vh;
-  overflow: hidden;
+.Imgplay {
+  width: 100rpx;
+  height: 100rpx;
+  display: block;
+}
+
+.listBox {
   display: flex;
-    flex-direction: column
+  width: 100vw;
+  flex-wrap: wrap;
+  margin-top: 25rpx;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 40rpx;
 }
-.ChoiceTop{
- 
-  font-size: 50rpx;
-  line-height: 120rpx;
-  font-weight: bold;
-  letter-spacing:8rpx
-}
-.bthC{
-   flex: 1;
+
+.list {
+  width: 40%;
+  text-align: center;
+  padding: 50rpx 0;
   display: flex;
   flex-direction: column;
-  width: 100%
+  align-items: center;
+  justify-content: center;
 }
-.bthC .cu-btn{
-  margin-top: 30rpx;
-  height: 80rpx
+
+.listP {
+  letter-spacing: 2px;
+  /*字间距*/
+  display: block;
+  /*内联对象需加*/
+  width: 10em;
+  /*指定宽度*/
+  word-break: keep-all;
+  /* 不换行 */
+  white-space: nowrap;
+  /* 强制在同一行内显示所有文本,直到文本结束或者遭遇 br 对象。不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  /* IE 专有属性,当对象内文本溢出时显示省略标记(...) ;需与overflow:hidden;一起使用。*/
+  text-align: center;
+  color: pink;
+  margin-top: 10rpx;
 }
-.aniamtion {
-  animation: mymove  3s ease;
-  /* //infinite属性是表示无限循环的意思，没有这个属性的话动画只执行一次。 */
+
+#box view {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  width: 10rpx;
+  height: 60rpx;
+  background-color: rgb(243, 25, 25);
+  transform-origin: bottom;
+  border-radius: 10rpx 10rpx 0 0;
 }
-@keyframes mymove {
-  from {
-    bottom: -40px;
-	/* transform: rotate(7deg) skew(50deg) translate(30rpx,30rpx); */
-	/* transform: rotate3d(100,200,300,0deg); */
+
+#box view:nth-child(1) {
+  left: 110rpx;
+  animation: musicWave 0.6s infinite linear both alternate;
+}
+
+#box view:nth-child(2) {
+  left: 125rpx;
+  animation: musicWave 0.2s infinite linear both alternate;
+}
+
+#box view:nth-child(3) {
+  left: 140rpx;
+  animation: musicWave 0.5s infinite linear both alternate;
+}
+
+#box view:nth-child(4) {
+  left: 155rpx;
+  animation: musicWave 0.3s infinite linear both alternate;
+}
+
+#box view:nth-child(5) {
+  left: 170rpx;
+  animation: musicWave 0.2s infinite linear both alternate;
+}
+#box view:nth-child(6) {
+  left: 185rpx;
+  animation: musicWave 0.7s infinite linear both alternate;
+}
+@keyframes musicWave {
+  0% {
+    height: 10rpx;
   }
 
-  to {
-   bottom: 0px;
-	/* transform: rotate(7deg) skew(5deg) translate(100rpx,100rpx); */
-	/* transform: rotate3d(200,300,400,360deg); */
+  100% {
+    height: 40rpx;
   }
+}
+.topBox{
+  font-family: FangSong;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
 }

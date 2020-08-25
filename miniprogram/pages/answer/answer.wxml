@@ -1,14 +1,27 @@
-<!--pages/home/home.wxml-->
-<view class="box">
-<swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-  <swiper-item wx:for="{{swiperList}}" wx:key="index">
-    <image src="{{item.urlImg}}" mode="aspectFill"></image>
-  </swiper-item>
-</swiper>
-<view class="text-blue text-center ChoiceTop">
-  请选择测试的题库类型
+
+<view class='cu-load load-modal'  wx:if="{{loadModal}}">
+  <!-- <view class='cuIcon-emojifill text-orange'></view> -->
+  <image src='../../images/tabar/index3.png' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>加载中...</view>
 </view>
-<view class="bthC">
-  <button  wx:for="{{list}}" wx:key="index" disabled="{{index!=0}}" class="cu-btn round bg-{{item.color}} shadow" bindtap="BthClick" data-data="{{item}}">{{item.name}}</button>
-  </view>
-  </view>
+<view wx:else>
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+	<view class="topBox cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{swiperList}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}">
+		{{item.title}}
+	</view>
+</scroll-view>
+<view class="listBox">
+	<view class="list padding-xl radius shadow-warp bg-white margin-top" wx:for="{{nameList}}" wx:key="index">
+		<image class="Imgplay" src="{{ImgIndex==index&&Imgboole?'../../images/stop.png':'../../images/play.png'}}" bindtap="playTap" data-id="{{index}}" data-boole="{{Imgboole}}"></image>
+		<p class="listP">{{item.meow_name_text}}</p>
+		<view id="box" wx:if="{{ImgIndex==index&&Imgboole}}">
+			<view></view>
+			<view></view>
+			<view></view>
+			<view></view>
+			<view></view>
+			<view></view>
+		</view>
+	</view>
+</view>
+</view>
