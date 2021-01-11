@@ -1,118 +1,121 @@
 {
-	"miniprogramRoot": "miniprogram/",
-	"cloudfunctionRoot": "cloudfunctions/",
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"enhance": true,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"uglifyFileName": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"appid": "wxf59ca383b511d668",
-	"projectname": "web",
-	"libVersion": "2.8.1",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": 0,
-			"list": [
-				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "pages/user/user",
-					"pathName": "pages/user/user",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/ranking/ranking",
-					"pathName": "pages/ranking/ranking",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/wrong/wrong",
-					"pathName": "pages/wrong/wrong",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/login/login",
-					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/answer/answer",
-					"pathName": "pages/answer/answer",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/answeEndr/answeEndr",
-					"pathName": "pages/answeEndr/answeEndr",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 7,
-					"name": "pages/answerEnd/answerEnd",
-					"pathName": "pages/answerEnd/answerEnd",
-					"query": "",
-					"scene": null
-				}
-			]
-		}
-	}
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "bundle": false,
+    "useApiHook": true,
+    "useApiHostProcess": true
+  },
+  "appid": "wxf59ca383b511d668",
+  "projectname": "web",
+  "libVersion": "2.8.1",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "pages/user/user",
+          "pathName": "pages/user/user",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/ranking/ranking",
+          "pathName": "pages/ranking/ranking",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/wrong/wrong",
+          "pathName": "pages/wrong/wrong",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/answer/answer",
+          "pathName": "pages/answer/answer",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/answeEndr/answeEndr",
+          "pathName": "pages/answeEndr/answeEndr",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 7,
+          "name": "pages/answerEnd/answerEnd",
+          "pathName": "pages/answerEnd/answerEnd",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
 }
